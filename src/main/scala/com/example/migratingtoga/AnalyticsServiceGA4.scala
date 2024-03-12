@@ -9,8 +9,8 @@ import com.google.api.gax.core.FixedCredentialsProvider
 import com.google.auth.oauth2.UserCredentials
 
 import java.io.{FileInputStream, InputStreamReader}
-import scala.collection.convert.ImplicitConversions.`iterable AsScalaIterable`
-import scala.jdk.CollectionConverters.{IterableHasAsScala, ListHasAsScala}
+import scala.jdk.CollectionConverters.IterableHasAsScala
+import scala.jdk.CollectionConverters.ListHasAsScala
 import scala.util.Using
 
 class AnalyticsServiceGA4 extends AnalyticsService {
@@ -25,11 +25,11 @@ class AnalyticsServiceGA4 extends AnalyticsService {
       .build()
     Using(getAdminClient(token))(adminClient =>
       adminClient
-        .listAccountSummaries(listAccountSummariesRequest).iterateAll.toList
+        .listAccountSummaries(listAccountSummariesRequest).iterateAll.asScala.toList
         .map(AnalyticsAccount.fromGA4AccountSummary)
         .map(accountSummery =>
           accountSummery.copy(properties = accountSummery.properties.map(property =>
-            property.copy(profiles = adminClient.listDataStreams(property.id).iterateAll.toList
+            property.copy(profiles = adminClient.listDataStreams(property.id).iterateAll.asScala.toList
               .map(AnalyticsProfile.fromDataStream)))))).get
   }
 
