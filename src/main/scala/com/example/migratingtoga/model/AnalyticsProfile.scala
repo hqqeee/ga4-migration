@@ -14,7 +14,7 @@ object AnalyticsProfile {
 
   def fromDataStream(dataStream: DataStream): AnalyticsProfile =
     AnalyticsProfile(
-      """\d+$""".r.findFirstIn(dataStream.getName).get, // It return name in format: properties/{property_id}/dataStreams/{stream_id} and can serv as unique identifier
+      """\d+$""".r.findFirstIn(dataStream.getName).get,
       dataStream.getDisplayName
     )
 }

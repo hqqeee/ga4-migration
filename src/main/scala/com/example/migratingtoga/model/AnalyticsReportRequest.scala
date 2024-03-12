@@ -4,7 +4,6 @@ import com.google.analytics.data.v1beta.Filter.StringFilter
 import com.google.analytics.data.v1beta.{Filter, FilterExpression, RunReportRequest}
 import com.google.api.services.analyticsreporting.v4.model.ReportRequest
 
-import java.util
 import scala.jdk.CollectionConverters.SeqHasAsJava
 
 case class AnalyticsReportRequest(dateRanges: List[AnalyticsDateRange], metrics: List[String],
@@ -45,7 +44,7 @@ case class AnalyticsReportRequest(dateRanges: List[AnalyticsDateRange], metrics:
       .setOffset(pageNumber * pageSize)
       .setDimensionFilter(FilterExpression.newBuilder
         .setFilter(Filter.newBuilder.setFieldName("streamId").setStringFilter(
-          StringFilter.newBuilder.setMatchType(StringFilter.MatchType.EXACT).setValue(viewId)))) // we filter datastream to get data for specifiec "view"
+          StringFilter.newBuilder.setMatchType(StringFilter.MatchType.EXACT).setValue(viewId))))
       .build
   }
 }

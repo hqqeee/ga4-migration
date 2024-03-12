@@ -9,7 +9,6 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.analytics.Analytics
 import com.google.api.services.analytics.model.AccountSummaries
 import com.google.api.services.analyticsreporting.v4.AnalyticsReporting
-import com.google.api.services.analyticsreporting.v4.model.GetReportsResponse
 import com.google.auth.http.HttpCredentialsAdapter
 
 import java.io.{FileInputStream, InputStreamReader}
